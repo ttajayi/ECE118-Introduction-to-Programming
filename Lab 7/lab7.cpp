@@ -1,0 +1,2482 @@
+﻿// 1. Background
+
+#include "library.h"
+
+void circle_steps(double step_length, double turn_angle, int steps_left)
+{
+    if (steps_left == 0)
+    {
+        return;
+    }
+    note_position();
+    draw_distance(step_length);
+    turn_right_by_degrees(turn_angle);
+    circle_steps(step_length, turn_angle, steps_left - 1);
+}
+
+void sun_or_moon(double x, double y, double radius, const int steps, int choose_sky)
+{
+    double pi = acos(-1.0);
+    double circumference = 2 * pi * radius;
+    double step_length = circumference / steps;
+    double turn_angle = 360 / steps;
+
+    start_shape();
+    move_to(x + radius, y);
+    set_heading_degrees(90);
+
+    circle_steps(step_length, turn_angle, steps);
+    note_position();
+
+    if (choose_sky == 1)
+    set_pen_color(color::yellow);
+    else set_pen_color(color::light_grey);
+
+    fill_shape();
+
+}
+
+void grass()
+{
+    set_pen_color(color::light_green);
+    fill_rectangle(0,550,800,570);
+}
+
+void dirt()
+{
+    set_pen_color(color::brown);
+    fill_rectangle(0,570,800,600);
+}
+
+void background()
+{
+    make_window(800, 600);
+
+    int choose_sky = random_in_range(1, 2);
+
+    //background
+    if (choose_sky == 1)
+    set_pen_color(color::light_blue);
+    else
+    set_pen_color(color::dark_blue);
+    fill_rectangle(0, 0, 800, 550);
+
+    //ground
+    grass();
+    dirt();
+
+    //sun or moon or wateva
+    if (choose_sky == 1)
+    sun_or_moon(600, 70, 30, 360, 1);
+    else
+    sun_or_moon(600, 70, 30, 360, 2);
+
+}
+
+void main()
+{
+    background();
+}
+
+// 2. Office Buildings
+
+// a) draw a single window
+
+#include "library.h"
+
+void circle_steps(double step_length, double turn_angle, int steps_left)
+{
+    if (steps_left == 0)
+    {
+        return;
+    }
+    note_position();
+    draw_distance(step_length);
+    turn_right_by_degrees(turn_angle);
+    circle_steps(step_length, turn_angle, steps_left - 1);
+}
+
+void sun_or_moon(double x, double y, double radius, const int steps, int choose_sky)
+{
+    double pi = acos(-1.0);
+    double circumference = 2 * pi * radius;
+    double step_length = circumference / steps;
+    double turn_angle = 360 / steps;
+
+    start_shape();
+    move_to(x + radius, y);
+    set_heading_degrees(90);
+
+    circle_steps(step_length, turn_angle, steps);
+    note_position();
+
+    if (choose_sky == 1)
+    set_pen_color(color::yellow);
+    else set_pen_color(color::light_grey);
+
+    fill_shape();
+
+}
+
+void grass()
+{
+    set_pen_color(color::light_green);
+    fill_rectangle(0,550,800,570);
+}
+
+void dirt()
+{
+    set_pen_color(color::brown);
+    fill_rectangle(0,570,800,600);
+}
+
+void background()
+{
+    make_window(800, 600);
+
+    int choose_sky = random_in_range(1, 2);
+
+    //background
+    if (choose_sky == 1)
+    set_pen_color(color::light_blue);
+    else
+    set_pen_color(color::dark_blue);
+    fill_rectangle(0, 0, 800, 550);
+
+    //ground
+    grass();
+    dirt();
+
+    //sun or moon or wateva
+    if (choose_sky == 1)
+    sun_or_moon(600, 70, 30, 360, 1);
+    else
+    sun_or_moon(600, 70, 30, 360, 2);
+
+}
+
+void building(const int x, const int y, const int w, const int h)
+{
+    const int width = x + w;
+    const int height = y + h;
+
+    set_pen_color(color::pink);
+    fill_rectangle(x, y, w, h);
+}
+
+void window(const int x, const int y, const int w, const int h)
+{
+    const int width = x + w;
+    const int height = y + h;
+
+    set_pen_color(color::light_grey);
+    fill_rectangle(x, y, w, h);
+
+}
+
+void main()
+{
+    background();
+    building(30,270,200,300);
+    window(35,275,30,50);
+}
+
+// b) draw a row of windows to make a single floor
+
+#include "library.h"
+
+void circle_steps(double step_length, double turn_angle, int steps_left)
+{
+    if (steps_left == 0)
+    {
+        return;
+    }
+    note_position();
+    draw_distance(step_length);
+    turn_right_by_degrees(turn_angle);
+    circle_steps(step_length, turn_angle, steps_left - 1);
+}
+
+void sun_or_moon(double x, double y, double radius, const int steps, int choose_sky)
+{
+    double pi = acos(-1.0);
+    double circumference = 2 * pi * radius;
+    double step_length = circumference / steps;
+    double turn_angle = 360 / steps;
+
+    start_shape();
+    move_to(x + radius, y);
+    set_heading_degrees(90);
+
+    circle_steps(step_length, turn_angle, steps);
+    note_position();
+
+    if (choose_sky == 1)
+    set_pen_color(color::yellow);
+    else set_pen_color(color::light_grey);
+
+    fill_shape();
+
+}
+
+void grass()
+{
+    set_pen_color(color::light_green);
+    fill_rectangle(0,550,800,570);
+}
+
+void dirt()
+{
+    set_pen_color(color::brown);
+    fill_rectangle(0,570,800,600);
+}
+
+void background()
+{
+    make_window(800, 600);
+
+    int choose_sky = random_in_range(1, 2);
+
+    //background
+    if (choose_sky == 1)
+    set_pen_color(color::light_blue);
+    else
+    set_pen_color(color::dark_blue);
+    fill_rectangle(0, 0, 800, 550);
+
+    //ground
+    grass();
+    dirt();
+
+    //sun or moon or wateva
+    if (choose_sky == 1)
+    sun_or_moon(600, 70, 30, 360, 1);
+    else
+    sun_or_moon(600, 70, 30, 360, 2);
+
+}
+
+void building(const int x, const int y, const int w, const int h)
+{
+    const int width = x + w;
+    const int height = y + h;
+
+    set_pen_color(color::pink);
+    fill_rectangle(x, y, w, h);
+}
+
+void window(const int x, const int y, const int w, const int h)
+{
+    const int width = x + w;
+    const int height = y + h;
+
+    fill_rectangle(x, y, w, h);
+
+}
+
+void row_of_windows(const int x, const int y, const int w, const int h, const int n, const int c)
+{
+    int number_of_windows = 0;
+    int space = 8.5;
+    int current_x = x;
+
+    if (c == 1)
+    set_pen_color(color::black);
+    if (c == 2)
+    set_pen_color(color::orange);
+    if (c == 3)
+    set_pen_color(color::pink);
+    if (c == 4)
+    set_pen_color(color::purple);
+    if (c == 5)
+    set_pen_color(color::red);
+    if (c == 6)
+    set_pen_color(color::light_green);
+    if (c == 7)
+    set_pen_color(color::green);
+    if (c == 8)
+    set_pen_color(color::yellow);
+    if (c == 9)
+    set_pen_color(color::violet);
+    if (c == 10)
+    set_pen_color(color::brown);
+    if (c == 11)
+    set_pen_color(color::light_grey);
+    if (c == 12)
+    set_pen_color(color::white);
+    if (c == 13)
+    set_pen_color(color::grey);
+    if (c == 14)
+    set_pen_color(color::dark_blue);
+
+    while (number_of_windows < n)
+    {
+
+        current_x = current_x + w + space;
+        window(current_x, y, w, h);
+
+        number_of_windows = number_of_windows + 1;
+    }
+}
+
+void main()
+{
+    background();
+    building(30,270,200,300);
+    row_of_windows(0,280,30,40,5,11);
+}
+
+// c) Draw a whole block of windows
+
+#include "library.h"
+
+void circle_steps(double step_length, double turn_angle, int steps_left)
+{
+    if (steps_left == 0)
+    {
+        return;
+    }
+    note_position();
+    draw_distance(step_length);
+    turn_right_by_degrees(turn_angle);
+    circle_steps(step_length, turn_angle, steps_left - 1);
+}
+
+void sun_or_moon(double x, double y, double radius, const int steps, int choose_sky)
+{
+    double pi = acos(-1.0);
+    double circumference = 2 * pi * radius;
+    double step_length = circumference / steps;
+    double turn_angle = 360 / steps;
+
+    start_shape();
+    move_to(x + radius, y);
+    set_heading_degrees(90);
+
+    circle_steps(step_length, turn_angle, steps);
+    note_position();
+
+    if (choose_sky == 1)
+    set_pen_color(color::yellow);
+    else set_pen_color(color::light_grey);
+
+    fill_shape();
+
+}
+
+void grass()
+{
+    set_pen_color(color::light_green);
+    fill_rectangle(0,550,800,570);
+}
+
+void dirt()
+{
+    set_pen_color(color::brown);
+    fill_rectangle(0,570,800,600);
+}
+
+void background()
+{
+    make_window(800, 600);
+
+    int choose_sky = random_in_range(1, 2);
+
+    //background
+    if (choose_sky == 1)
+    set_pen_color(color::light_blue);
+    else
+    set_pen_color(color::dark_blue);
+    fill_rectangle(0, 0, 800, 550);
+
+    //ground
+    grass();
+    dirt();
+
+    //sun or moon or wateva
+    if (choose_sky == 1)
+    sun_or_moon(600, 70, 30, 360, 1);
+    else
+    sun_or_moon(600, 70, 30, 360, 2);
+
+}
+
+void building(const int x, const int y, const int w, const int h)
+{
+    const int width = x + w;
+    const int height = y + h;
+
+    set_pen_color(color::pink);
+    fill_rectangle(x, y, w, h);
+}
+
+void window(const int x, const int y, const int w, const int h)
+{
+    const int width = x + w;
+    const int height = y + h;
+
+    fill_rectangle(x, y, w, h);
+
+}
+
+void row_of_windows(const int x, const int y, const int w, const int h, const int n, const int c)
+{
+    int number_of_windows = 0;
+    double space = 8.5;
+    int current_x = x;
+
+    if (c == 1)
+    set_pen_color(color::black);
+    if (c == 2)
+    set_pen_color(color::orange);
+    if (c == 3)
+    set_pen_color(color::pink);
+    if (c == 4)
+    set_pen_color(color::purple);
+    if (c == 5)
+    set_pen_color(color::red);
+    if (c == 6)
+    set_pen_color(color::light_green);
+    if (c == 7)
+    set_pen_color(color::green);
+    if (c == 8)
+    set_pen_color(color::yellow);
+    if (c == 9)
+    set_pen_color(color::violet);
+    if (c == 10)
+    set_pen_color(color::brown);
+    if (c == 11)
+    set_pen_color(color::light_grey);
+    if (c == 12)
+    set_pen_color(color::white);
+    if (c == 13)
+    set_pen_color(color::grey);
+    if (c == 14)
+    set_pen_color(color::dark_blue);
+
+    while (number_of_windows < n)
+    {
+
+        current_x = current_x + w + space;
+        window(current_x, y, w, h);
+
+        number_of_windows = number_of_windows + 1;
+    }
+}
+
+void block_of_windows(const int x, const int y, const int w, const int h, const int n_floors, const int n_windows, double space, const int c)
+{
+    int number_of_floors = 0;
+    int s = space;
+    int current_y = y;
+
+    if (c == 1)
+    set_pen_color(color::black);
+    if (c == 2)
+    set_pen_color(color::orange);
+    if (c == 3)
+    set_pen_color(color::pink);
+    if (c == 4)
+    set_pen_color(color::purple);
+    if (c == 5)
+    set_pen_color(color::red);
+    if (c == 6)
+    set_pen_color(color::light_green);
+    if (c == 7)
+    set_pen_color(color::green);
+    if (c == 8)
+    set_pen_color(color::yellow);
+    if (c == 9)
+    set_pen_color(color::violet);
+    if (c == 10)
+    set_pen_color(color::brown);
+    if (c == 11)
+    set_pen_color(color::light_grey);
+    if (c == 12)
+    set_pen_color(color::white);
+    if (c == 13)
+    set_pen_color(color::grey);
+    if (c == 14)
+    set_pen_color(color::dark_blue);
+
+    while (number_of_floors < n_floors)
+    {
+
+        current_y = current_y + h + space;
+        row_of_windows(x, current_y, w, h, n_windows, c);
+
+        number_of_floors = number_of_floors + 1;
+    }
+}
+
+void main()
+{
+    background();
+    building(30,270,200,300);
+
+    block_of_windows(0,240,30,38,6,5,8.5,11);
+}
+
+// d) Draw a whole office building
+
+#include "library.h"
+
+void circle_steps(double step_length, double turn_angle, int steps_left)
+{
+    if (steps_left == 0)
+    {
+        return;
+    }
+    note_position();
+    draw_distance(step_length);
+    turn_right_by_degrees(turn_angle);
+    circle_steps(step_length, turn_angle, steps_left - 1);
+}
+
+void sun_or_moon(double x, double y, double radius, const int steps, int choose_sky)
+{
+    double pi = acos(-1.0);
+    double circumference = 2 * pi * radius;
+    double step_length = circumference / steps;
+    double turn_angle = 360 / steps;
+
+    start_shape();
+    move_to(x + radius, y);
+    set_heading_degrees(90);
+
+    circle_steps(step_length, turn_angle, steps);
+    note_position();
+
+    if (choose_sky == 1)
+    set_pen_color(color::yellow);
+    else set_pen_color(color::light_grey);
+
+    fill_shape();
+
+}
+
+void grass()
+{
+    set_pen_color(color::light_green);
+    fill_rectangle(0,550,800,570);
+}
+
+void dirt()
+{
+    set_pen_color(color::brown);
+    fill_rectangle(0,570,800,600);
+}
+
+void background()
+{
+    make_window(800, 600);
+
+    int choose_sky = random_in_range(1, 2);
+
+    //background
+    if (choose_sky == 1)
+    set_pen_color(color::light_blue);
+    else
+    set_pen_color(color::dark_blue);
+    fill_rectangle(0, 0, 800, 550);
+
+    //ground
+    grass();
+    dirt();
+
+    //sun or moon or wateva
+    if (choose_sky == 1)
+    sun_or_moon(600, 70, 30, 360, 1);
+    else
+    sun_or_moon(600, 70, 30, 360, 2);
+
+}
+
+void building(const int x, const int y, const int w, const int h)
+{
+    const int width = x + w;
+    const int height = y + h;
+
+    set_pen_color(color::pink);
+    fill_rectangle(x, y, w, h);
+}
+
+void window(const int x, const int y, const int w, const int h)
+{
+    const int width = x + w;
+    const int height = y + h;
+
+    fill_rectangle(x, y, w, h);
+
+}
+
+void row_of_windows(const int x, const int y, const int w, const int h, const int n, const int c)
+{
+    int number_of_windows = 0;
+    double space = 8.5;
+    int current_x = x;
+
+    if (c == 1)
+    set_pen_color(color::orange);
+    if (c == 2)
+    set_pen_color(color::pink);
+    if (c == 3)
+    set_pen_color(color::purple);
+    if (c == 4)
+    set_pen_color(color::light_red);
+    if (c == 5)
+    set_pen_color(color::indigo);
+    if (c == 6)
+    set_pen_color(color::light_green);
+    if (c == 7)
+    set_pen_color(color::green);
+    if (c == 8)
+    set_pen_color(color::yellow);
+    if (c == 9)
+    set_pen_color(color::violet);
+    if (c == 10)
+    set_pen_color(color::red);
+    if (c == 11)
+    set_pen_color(color::light_grey);
+    if (c == 12)
+    set_pen_color(color::white);
+    if (c == 13)
+    set_pen_color(color::grey);
+    if (c == 14)
+    set_pen_color(color::dark_blue);
+
+    while (number_of_windows < n)
+    {
+
+        current_x = current_x + w + space;
+        window(current_x, y, w, h);
+
+        number_of_windows = number_of_windows + 1;
+    }
+}
+
+void block_of_windows(const int x, const int y, const int w, const int h, const int n_floors, const int n_windows, double space, const int c)
+{
+    int number_of_floors = 0;
+    int s = space;
+    int current_y = y;
+
+    if (c == 1)
+    set_pen_color(color::orange);
+    if (c == 2)
+    set_pen_color(color::pink);
+    if (c == 3)
+    set_pen_color(color::purple);
+    if (c == 4)
+    set_pen_color(color::light_red);
+    if (c == 5)
+    set_pen_color(color::indigo);
+    if (c == 6)
+    set_pen_color(color::light_green);
+    if (c == 7)
+    set_pen_color(color::green);
+    if (c == 8)
+    set_pen_color(color::yellow);
+    if (c == 9)
+    set_pen_color(color::violet);
+    if (c == 10)
+    set_pen_color(color::red);
+    if (c == 11)
+    set_pen_color(color::light_grey);
+    if (c == 12)
+    set_pen_color(color::white);
+    if (c == 13)
+    set_pen_color(color::grey);
+    if (c == 14)
+    set_pen_color(color::dark_blue);
+
+    while (number_of_floors < n_floors)
+    {
+        row_of_windows(x, current_y, w, h, n_windows, c);
+        current_y = current_y + h + space;
+
+        number_of_floors = number_of_floors + 1;
+    }
+}
+
+void office_building(const int x, const int ground_y, int w)
+{
+    const int n_floors = random_in_range(4, 10);
+    int window_width = 30;
+    int window_height = 35;
+    int space = 8;
+    int top_bottom_margin = 10;
+
+    int building_height = n_floors * (window_height + space) + top_bottom_margin * 2;
+
+    //STAY ON THE GROUND!!!!
+    int y = 570 - building_height;
+
+    const int building_color = random_in_range(1, 14);
+    fill_rectangle(x, y, w, building_height);
+    int window_color = random_in_range(1, 14);
+
+    while (window_color == building_color)
+    {
+        window_color = random_in_range(1, 14);
+    }
+
+    int available_width = w - space;
+    int windows_per_floor = available_width / (window_width + space);
+
+    int window_start_y = y + top_bottom_margin;
+
+    block_of_windows(x - 27.5, window_start_y, window_width, window_height,n_floors, windows_per_floor, space, window_color);
+}
+
+void main()
+{
+    background();
+    office_building(30,180,200);
+
+}
+
+// e) Draw a city scene
+
+#include "library.h"
+
+void circle_steps(double step_length, double turn_angle, int steps_left)
+{
+    if (steps_left == 0)
+    {
+        return;
+    }
+    note_position();
+    draw_distance(step_length);
+    turn_right_by_degrees(turn_angle);
+    circle_steps(step_length, turn_angle, steps_left - 1);
+}
+
+void sun_or_moon(double x, double y, double radius, const int steps, int choose_sky)
+{
+    double pi = acos(-1.0);
+    double circumference = 2 * pi * radius;
+    double step_length = circumference / steps;
+    double turn_angle = 360 / steps;
+
+    start_shape();
+    move_to(x + radius, y);
+    set_heading_degrees(90);
+
+    circle_steps(step_length, turn_angle, steps);
+    note_position();
+
+    if (choose_sky == 1)
+    set_pen_color(color::yellow);
+    else set_pen_color(color::light_grey);
+
+    fill_shape();
+
+}
+
+void grass()
+{
+    set_pen_color(color::light_green);
+    fill_rectangle(0,550,800,570);
+}
+
+void dirt()
+{
+    set_pen_color(color::brown);
+    fill_rectangle(0,570,800,600);
+}
+
+void background()
+{
+    make_window(800, 600);
+
+    int choose_sky = random_in_range(1, 2);
+
+    //background
+    if (choose_sky == 1)
+    set_pen_color(color::light_blue);
+    else
+    set_pen_color(color::dark_blue);
+    fill_rectangle(0, 0, 800, 550);
+
+    //ground
+    grass();
+    dirt();
+
+    //sun or moon or wateva
+    if (choose_sky == 1)
+    sun_or_moon(600, 70, 30, 360, 1);
+    else
+    sun_or_moon(600, 70, 30, 360, 2);
+
+}
+
+void building(const int x, const int y, const int w, const int h)
+{
+    const int width = x + w;
+    const int height = y + h;
+
+    set_pen_color(color::pink);
+    fill_rectangle(x, y, w, h);
+}
+
+void window(const int x, const int y, const int w, const int h)
+{
+    const int width = x + w;
+    const int height = y + h;
+
+    fill_rectangle(x, y, w, h);
+
+}
+
+void row_of_windows(const int x, const int y, const int w, const int h, const int n, const int c)
+{
+    int number_of_windows = 0;
+    double space = 8.5;
+    int current_x = x;
+
+    if (c == 1)
+    set_pen_color(color::orange);
+    if (c == 2)
+    set_pen_color(color::pink);
+    if (c == 3)
+    set_pen_color(color::purple);
+    if (c == 4)
+    set_pen_color(color::light_red);
+    if (c == 5)
+    set_pen_color(color::indigo);
+    if (c == 6)
+    set_pen_color(color::light_green);
+    if (c == 7)
+    set_pen_color(color::green);
+    if (c == 8)
+    set_pen_color(color::yellow);
+    if (c == 9)
+    set_pen_color(color::violet);
+    if (c == 10)
+    set_pen_color(color::red);
+    if (c == 11)
+    set_pen_color(color::light_grey);
+    if (c == 12)
+    set_pen_color(color::white);
+    if (c == 13)
+    set_pen_color(color::grey);
+    if (c == 14)
+    set_pen_color(color::dark_blue);
+
+    while (number_of_windows < n)
+    {
+
+        current_x = current_x + w + space;
+        window(current_x, y, w, h);
+
+        number_of_windows = number_of_windows + 1;
+    }
+}
+
+void block_of_windows(const int x, const int y, const int w, const int h, const int n_floors, const int n_windows, double space, const int c)
+{
+    int number_of_floors = 0;
+    int s = space;
+    int current_y = y;
+
+    if (c == 1)
+    set_pen_color(color::orange);
+    if (c == 2)
+    set_pen_color(color::pink);
+    if (c == 3)
+    set_pen_color(color::purple);
+    if (c == 4)
+    set_pen_color(color::light_red);
+    if (c == 5)
+    set_pen_color(color::indigo);
+    if (c == 6)
+    set_pen_color(color::light_green);
+    if (c == 7)
+    set_pen_color(color::green);
+    if (c == 8)
+    set_pen_color(color::yellow);
+    if (c == 9)
+    set_pen_color(color::violet);
+    if (c == 10)
+    set_pen_color(color::red);
+    if (c == 11)
+    set_pen_color(color::light_grey);
+    if (c == 12)
+    set_pen_color(color::white);
+    if (c == 13)
+    set_pen_color(color::grey);
+    if (c == 14)
+    set_pen_color(color::dark_blue);
+
+    while (number_of_floors < n_floors)
+    {
+        row_of_windows(x, current_y, w, h, n_windows, c);
+        current_y = current_y + h + space;
+
+        number_of_floors = number_of_floors + 1;
+    }
+}
+
+void office_building(const int x, const int ground_y, int w)
+{
+    const int n_floors = random_in_range(4, 10);
+    int window_width = 30;
+    int window_height = 35;
+    int space = 8;
+    int top_bottom_margin = 10;
+
+    int building_height = n_floors * (window_height + space) + top_bottom_margin * 2;
+
+    //STAY ON THE GROUND!!!!
+    int y = 570 - building_height;
+
+    const int building_color = random_in_range(1, 14);
+    fill_rectangle(x, y, w, building_height);
+    int window_color = random_in_range(1, 14);
+
+    while (window_color == building_color)
+    {
+        window_color = random_in_range(1, 14);
+    }
+
+    int available_width = w - space;
+    int windows_per_floor = available_width / (window_width + space);
+
+    int window_start_y = y + top_bottom_margin;
+
+    block_of_windows(x - 27.5, window_start_y, window_width, window_height,n_floors, windows_per_floor, space, window_color);
+}
+
+void city_scene()
+{
+    int x = 20;
+    int ground_y = 240;
+
+    while (x < 800)
+    {
+        int width = random_in_range(120, 180);
+        office_building(x, ground_y, width);
+        x = x + width + 15;
+    }
+}
+
+void main()
+{
+    background();
+    city_scene();
+}
+
+// 3. Houses
+
+#include "library.h"
+
+void circle_steps(double step_length, double turn_angle, int steps_left)
+{
+    if (steps_left == 0)
+    {
+        return;
+    }
+    note_position();
+    draw_distance(step_length);
+    turn_right_by_degrees(turn_angle);
+    circle_steps(step_length, turn_angle, steps_left - 1);
+}
+
+void sun_or_moon(double x, double y, double radius, const int steps, int choose_sky)
+{
+    double pi = acos(-1.0);
+    double circumference = 2 * pi * radius;
+    double step_length = circumference / steps;
+    double turn_angle = 360 / steps;
+
+    start_shape();
+    move_to(x + radius, y);
+    set_heading_degrees(90);
+
+    circle_steps(step_length, turn_angle, steps);
+    note_position();
+
+    if (choose_sky == 1)
+    set_pen_color(color::yellow);
+    else set_pen_color(color::light_grey);
+
+    fill_shape();
+
+}
+
+void grass()
+{
+    set_pen_color(color::light_green);
+    fill_rectangle(0,550,800,570);
+}
+
+void dirt()
+{
+    set_pen_color(color::brown);
+    fill_rectangle(0,570,800,600);
+}
+
+void background()
+{
+    make_window(800, 600);
+
+    int choose_sky = random_in_range(1, 2);
+
+    //background
+    if (choose_sky == 1)
+    set_pen_color(color::light_blue);
+    else
+    set_pen_color(color::dark_blue);
+    fill_rectangle(0, 0, 800, 550);
+
+    //ground
+    grass();
+    dirt();
+
+    //sun or moon or wateva
+    if (choose_sky == 1)
+    sun_or_moon(600, 70, 30, 360, 1);
+    else
+    sun_or_moon(600, 70, 30, 360, 2);
+
+}
+
+void building(const int x, const int y, const int w, const int h)
+{
+    const int width = x + w;
+    const int height = y + h;
+
+    set_pen_color(color::pink);
+    fill_rectangle(x, y, w, h);
+}
+
+void window(const int x, const int y, const int w, const int h)
+{
+    const int width = x + w;
+    const int height = y + h;
+
+    fill_rectangle(x, y, w, h);
+
+}
+
+void row_of_windows(const int x, const int y, const int w, const int h, const int n, double space_x, const int c)
+{
+    int number_of_windows = 0;
+    int current_x = x;
+
+    if (c == 1)
+    set_pen_color(color::orange);
+    if (c == 2)
+    set_pen_color(color::pink);
+    if (c == 3)
+    set_pen_color(color::purple);
+    if (c == 4)
+    set_pen_color(color::light_red);
+    if (c == 5)
+    set_pen_color(color::indigo);
+    if (c == 6)
+    set_pen_color(color::light_green);
+    if (c == 7)
+    set_pen_color(color::green);
+    if (c == 8)
+    set_pen_color(color::yellow);
+    if (c == 9)
+    set_pen_color(color::violet);
+    if (c == 10)
+    set_pen_color(color::red);
+    if (c == 11)
+    set_pen_color(color::light_grey);
+    if (c == 12)
+    set_pen_color(color::white);
+    if (c == 13)
+    set_pen_color(color::grey);
+    if (c == 14)
+    set_pen_color(color::dark_blue);
+
+    while (number_of_windows < n)
+    {
+
+        current_x = current_x + w + space_x;
+        window(current_x, y, w, h);
+
+        number_of_windows = number_of_windows + 1;
+    }
+}
+
+void block_of_windows(const int x, const int y, const int w, const int h, const int n_floors, const int n_windows, double space_x, double space_y, const int c)
+{
+    int number_of_floors = 0;
+    int sx = space_x;
+    int sy = space_y;
+    int current_y = y;
+
+    if (c == 1)
+    set_pen_color(color::orange);
+    if (c == 2)
+    set_pen_color(color::pink);
+    if (c == 3)
+    set_pen_color(color::purple);
+    if (c == 4)
+    set_pen_color(color::light_red);
+    if (c == 5)
+    set_pen_color(color::indigo);
+    if (c == 6)
+    set_pen_color(color::light_green);
+    if (c == 7)
+    set_pen_color(color::green);
+    if (c == 8)
+    set_pen_color(color::yellow);
+    if (c == 9)
+    set_pen_color(color::violet);
+    if (c == 10)
+    set_pen_color(color::red);
+    if (c == 11)
+    set_pen_color(color::light_grey);
+    if (c == 12)
+    set_pen_color(color::white);
+    if (c == 13)
+    set_pen_color(color::grey);
+    if (c == 14)
+    set_pen_color(color::dark_blue);
+
+    while (number_of_floors < n_floors)
+    {
+        row_of_windows(x, current_y, w, h, n_windows, space_x, c);
+        current_y = current_y + h + space_y;
+
+        number_of_floors = number_of_floors + 1;
+    }
+}
+
+void office_building(const int x, const int ground_y, int w)
+{
+    const int n_floors = random_in_range(4, 10);
+    int window_width = 30;
+    int window_height = 35;
+    int space_x = 8;
+    int space_y = 8;
+    int top_bottom_margin = 10;
+
+    int building_height = n_floors * (window_height + space_y) + top_bottom_margin * 2;
+
+    //STAY ON THE GROUND!!!!
+    int y = 570 - building_height;
+
+    int building_color = random_in_range(1, 14);
+    fill_rectangle(x, y, w, building_height);
+    int window_color = random_in_range(1, 14);
+
+    while (window_color == building_color)
+    {
+        window_color = random_in_range(1, 14);
+    }
+
+    int available_width = w - space_y;
+    int windows_per_floor = available_width / (window_width + space_y);
+
+    int window_start_y = y + top_bottom_margin;
+
+    block_of_windows(x - 27.5, window_start_y, window_width, window_height,n_floors, windows_per_floor, space_x, space_y, window_color);
+}
+
+void house(const int x, const int ground_y, int w)
+{
+
+    const int n_floors = random_in_range(1, 2);
+
+    int window_width = 30;
+    int window_height = 35;
+    int space_x = 30;
+    int space_y = 8;
+    int top_bottom_margin = 10;
+
+    int house_height = n_floors * (window_height + space_y) + top_bottom_margin * 2;
+
+    int y = ground_y - house_height;
+
+    int house_color = random_in_range(1, 8);
+    fill_rectangle(x, y, w, house_height);
+
+    start_shape();
+    move_to(x, y);
+    note_position();
+    move_to(x + w / 2, y - 40);
+    note_position();
+    move_to(x + w, y);
+    note_position();
+    set_pen_color(color::brown);
+    fill_shape();
+
+    int available_width = w - space_y;
+    int windows_per_floor = available_width / (window_width + space_y);
+    int window_color = random_in_range(1, 14);
+
+    while (window_color == house_color)
+    {
+        window_color = random_in_range(1, 14);
+    }
+
+    int window_start_y = y + top_bottom_margin;
+    block_of_windows(x-55, window_start_y, window_width, window_height, n_floors, windows_per_floor, space_x, space_y, window_color);
+
+    int door_color = random_in_range(1,14);
+    int door_x = x + 35;
+    int door_y = (ground_y - window_height - 5);
+    fill_rectangle(door_x, door_y, window_width, window_height + 10);
+}
+
+void city_scene()
+{
+    int x = 20;
+
+    while (x < 800)
+    {
+        int ground_y = 240;
+        int width = random_in_range(120, 180);
+        office_building(x, ground_y, width);
+        x = x + width + 15;
+    }
+
+    x = 20;
+
+    while (x < 800)
+    {
+        int ground_y = 570;
+        int width = 100;
+        house(x, ground_y, width);
+        x = x + width + 70;
+    }
+}
+
+void main()
+{
+    background();
+    city_scene();
+}
+
+// 4. Variety
+
+#include "library.h"
+
+void circle_steps(double step_length, double turn_angle, int steps_left)
+{
+    if (steps_left == 0)
+    {
+        return;
+    }
+    note_position();
+    draw_distance(step_length);
+    turn_right_by_degrees(turn_angle);
+    circle_steps(step_length, turn_angle, steps_left - 1);
+}
+
+void sun_or_moon(double x, double y, double radius, const int steps, int choose_sky)
+{
+    double pi = acos(-1.0);
+    double circumference = 2 * pi * radius;
+    double step_length = circumference / steps;
+    double turn_angle = 360 / steps;
+
+    start_shape();
+    move_to(x + radius, y);
+    set_heading_degrees(90);
+
+    circle_steps(step_length, turn_angle, steps);
+    note_position();
+
+    if (choose_sky == 1)
+    set_pen_color(color::yellow);
+    else set_pen_color(color::light_grey);
+
+    fill_shape();
+
+}
+
+void grass()
+{
+    set_pen_color(color::light_green);
+    fill_rectangle(0,550,800,570);
+}
+
+void dirt()
+{
+    set_pen_color(color::brown);
+    fill_rectangle(0,570,800,600);
+}
+
+void background()
+{
+    make_window(800, 600);
+
+    int choose_sky = random_in_range(1, 2);
+
+    //background
+    if (choose_sky == 1)
+    set_pen_color(color::light_blue);
+    else
+    set_pen_color(color::dark_blue);
+    fill_rectangle(0, 0, 800, 550);
+
+    //ground
+    grass();
+    dirt();
+
+    //sun or moon or wateva
+    if (choose_sky == 1)
+    sun_or_moon(600, 70, 30, 360, 1);
+    else
+    sun_or_moon(600, 70, 30, 360, 2);
+
+}
+
+void building(const int x, const int y, const int w, const int h)
+{
+    const int width = x + w;
+    const int height = y + h;
+
+    set_pen_color(color::pink);
+    fill_rectangle(x, y, w, h);
+}
+
+void window(const int x, const int y, const int w, const int h)
+{
+    const int width = x + w;
+    const int height = y + h;
+
+    fill_rectangle(x, y, w, h);
+
+}
+
+void row_of_windows(const int x, const int y, const int w, const int h, const int n, double space_x, const int c)
+{
+    int number_of_windows = 0;
+    int current_x = x;
+
+    if (c == 1)
+    set_pen_color(color::orange);
+    if (c == 2)
+    set_pen_color(color::pink);
+    if (c == 3)
+    set_pen_color(color::purple);
+    if (c == 4)
+    set_pen_color(color::light_red);
+    if (c == 5)
+    set_pen_color(color::indigo);
+    if (c == 6)
+    set_pen_color(color::light_green);
+    if (c == 7)
+    set_pen_color(color::green);
+    if (c == 8)
+    set_pen_color(color::yellow);
+    if (c == 9)
+    set_pen_color(color::violet);
+    if (c == 10)
+    set_pen_color(color::red);
+    if (c == 11)
+    set_pen_color(color::light_grey);
+    if (c == 12)
+    set_pen_color(color::white);
+    if (c == 13)
+    set_pen_color(color::grey);
+    if (c == 14)
+    set_pen_color(color::dark_blue);
+
+    while (number_of_windows < n)
+    {
+
+        current_x = current_x + w + space_x;
+        window(current_x, y, w, h);
+
+        number_of_windows = number_of_windows + 1;
+    }
+}
+
+void block_of_windows(const int x, const int y, const int w, const int h, const int n_floors, const int n_windows, double space_x, double space_y, const int c)
+{
+    int number_of_floors = 0;
+    int sx = space_x;
+    int sy = space_y;
+    int current_y = y;
+
+    if (c == 1)
+    set_pen_color(color::orange);
+    if (c == 2)
+    set_pen_color(color::pink);
+    if (c == 3)
+    set_pen_color(color::purple);
+    if (c == 4)
+    set_pen_color(color::light_red);
+    if (c == 5)
+    set_pen_color(color::indigo);
+    if (c == 6)
+    set_pen_color(color::light_green);
+    if (c == 7)
+    set_pen_color(color::green);
+    if (c == 8)
+    set_pen_color(color::yellow);
+    if (c == 9)
+    set_pen_color(color::violet);
+    if (c == 10)
+    set_pen_color(color::red);
+    if (c == 11)
+    set_pen_color(color::light_grey);
+    if (c == 12)
+    set_pen_color(color::white);
+    if (c == 13)
+    set_pen_color(color::grey);
+    if (c == 14)
+    set_pen_color(color::dark_blue);
+
+    while (number_of_floors < n_floors)
+    {
+        row_of_windows(x, current_y, w, h, n_windows, space_x, c);
+        current_y = current_y + h + space_y;
+
+        number_of_floors = number_of_floors + 1;
+    }
+}
+
+void office_building(const int x, const int ground_y, int w)
+{
+    const int n_floors = random_in_range(4, 10);
+    int window_width = 30;
+    int window_height = 35;
+    int space_x = 8;
+    int space_y = 8;
+    int top_bottom_margin = 10;
+
+    int building_height = n_floors * (window_height + space_y) + top_bottom_margin * 2;
+
+    //STAY ON THE GROUND!!!!
+    int y = 570 - building_height;
+
+    int building_color = random_in_range(1, 14);
+    fill_rectangle(x, y, w, building_height);
+    int window_color = random_in_range(1, 14);
+
+    while (window_color == building_color)
+    {
+        window_color = random_in_range(1, 14);
+    }
+
+    int available_width = w - space_y;
+    int windows_per_floor = available_width / (window_width + space_y);
+
+    int window_start_y = y + top_bottom_margin;
+
+    block_of_windows(x - 27.5, window_start_y, window_width, window_height,n_floors, windows_per_floor, space_x, space_y, window_color);
+}
+
+void fifty_stars(int x, int y)
+{
+    set_pen_color(color::white);
+
+    fill_rectangle(x + 2, y + 5, 1, 1);
+    fill_rectangle(x + 4, y + 5, 1, 1);
+    fill_rectangle(x + 6, y + 5, 1, 1);
+    fill_rectangle(x + 8, y + 5, 1, 1);
+    fill_rectangle(x + 10, y + 5, 1, 1);
+    fill_rectangle(x + 12, y + 5, 1, 1);
+
+    fill_rectangle(x + 3, y + 6, 1, 1);
+    fill_rectangle(x + 5, y + 6, 1, 1);
+    fill_rectangle(x + 7, y + 6, 1, 1);
+    fill_rectangle(x + 9, y + 6, 1, 1);
+    fill_rectangle(x + 11, y + 6, 1, 1);
+
+    fill_rectangle(x + 2, y + 7, 1, 1);
+    fill_rectangle(x + 4, y + 7, 1, 1);
+    fill_rectangle(x + 6, y + 7, 1, 1);
+    fill_rectangle(x + 8, y + 7, 1, 1);
+    fill_rectangle(x + 10, y + 7, 1, 1);
+    fill_rectangle(x + 12, y + 7, 1, 1);
+
+    fill_rectangle(x + 3, y + 8, 1, 1);
+    fill_rectangle(x + 5, y + 8, 1, 1);
+    fill_rectangle(x + 7, y + 8, 1, 1);
+    fill_rectangle(x + 9, y + 8, 1, 1);
+    fill_rectangle(x + 11, y + 8, 1, 1);
+
+    fill_rectangle(x + 2, y + 9, 1, 1);
+    fill_rectangle(x + 4, y + 9, 1, 1);
+    fill_rectangle(x + 6, y + 9, 1, 1);
+    fill_rectangle(x + 8, y + 9, 1, 1);
+    fill_rectangle(x + 10, y + 9, 1, 1);
+    fill_rectangle(x + 12, y + 9, 1, 1);
+}
+
+void mini_american_flag(int x, int y)
+{
+    set_pen_color(color::white);
+    fill_rectangle(x, y, 25, 13);
+    set_pen_color(color::red);
+    fill_rectangle(x, y, 25, 2);
+    fill_rectangle(x, y + 4, 25, 2);
+    fill_rectangle(x, y + 8, 25, 2);
+    fill_rectangle(x, y + 13, 25, 2);
+
+    set_pen_color(color::blue);
+    fill_rectangle(x, y, 10, 5);
+
+    fifty_stars(x-2, y-5);
+
+}
+
+void varietys(const int x, const int y, const int w)
+{
+    int choice = random_in_range(1, 2);
+
+    if (choice == 1) //chimney
+    {
+        set_pen_color(color::dark_grey);
+        fill_rectangle(x + w - 30, y - 50, 10, 40);
+    }
+
+    else if (choice == 2) //flag
+    {
+        set_pen_color(color::dark_grey);
+        fill_rectangle(x + w/2 + 40, y - 60, 3, 60);
+        move_to(x + w/2 + 40, y - 60);
+        mini_american_flag(x + w/2 + 40, y - 60);
+
+    }
+
+}
+
+void house(const int x, const int ground_y, int w)
+{
+    const int n_floors = random_in_range(1, 2);
+
+    int window_width = 30;
+    int window_height = 35;
+    int space_x = 30;
+    int space_y = 8;
+    int top_bottom_margin = 10;
+
+    int house_height = n_floors * (window_height + space_y) + top_bottom_margin * 2;
+    int y = ground_y - house_height;
+
+    int house_color = random_in_range(1, 8);
+    fill_rectangle(x, y, w, house_height);
+    varietys(x,y,w);
+
+    start_shape();
+    move_to(x, y);
+    note_position();
+    move_to(x + w / 2, y - 40);
+    note_position();
+    move_to(x + w, y);
+    note_position();
+    set_pen_color(color::brown);
+    fill_shape();
+
+    int available_width = w - space_y;
+    int windows_per_floor = available_width / (window_width + space_y);
+    int window_color = random_in_range(1, 14);
+
+    while (window_color == house_color)
+    {
+        window_color = random_in_range(1, 14);
+    }
+
+    int window_start_y = y + top_bottom_margin;
+    block_of_windows(x-55, window_start_y, window_width, window_height, n_floors, windows_per_floor, space_x, space_y, window_color);
+
+    int door_color = random_in_range(1,14);
+    int door_x = x + 35;
+    int door_y = (ground_y - window_height - 5);
+    fill_rectangle(door_x, door_y, window_width, window_height + 10);
+
+}
+
+void city_scene()
+{
+    int x = 20;
+
+    while (x < 800)
+    {
+        int ground_y = 240;
+        int width = random_in_range(120, 180);
+        office_building(x, ground_y, width);
+        x = x + width + 15;
+    }
+
+    x = 20;
+
+    while (x < 800)
+    {
+        int ground_y = 570;
+        int width = 100;
+        house(x, ground_y, width);
+        x = x + width + 70;
+    }
+}
+
+void main()
+{
+    background();
+    city_scene();
+}
+
+// 5. Trees
+
+#include "library.h"
+
+void circle_steps(double step_length, double turn_angle, int steps_left)
+{
+    if (steps_left == 0)
+    {
+        return;
+    }
+    note_position();
+    draw_distance(step_length);
+    turn_right_by_degrees(turn_angle);
+    circle_steps(step_length, turn_angle, steps_left - 1);
+}
+
+void sun_or_moon(double x, double y, double radius, const int steps, int choose_sky)
+{
+    double pi = acos(-1.0);
+    double circumference = 2 * pi * radius;
+    double step_length = circumference / steps;
+    double turn_angle = 360 / steps;
+
+    start_shape();
+    move_to(x + radius, y);
+    set_heading_degrees(90);
+
+    circle_steps(step_length, turn_angle, steps);
+    note_position();
+
+    if (choose_sky == 1)
+    set_pen_color(color::yellow);
+    else set_pen_color(color::light_grey);
+
+    fill_shape();
+
+}
+
+void grass()
+{
+    set_pen_color(color::light_green);
+    fill_rectangle(0,550,800,570);
+}
+
+void dirt()
+{
+    set_pen_color(color::brown);
+    fill_rectangle(0,570,800,600);
+}
+
+void background()
+{
+    make_window(800, 600);
+
+    int choose_sky = random_in_range(1, 2);
+
+    //background
+    if (choose_sky == 1)
+    set_pen_color(color::light_blue);
+    else
+    set_pen_color(color::dark_blue);
+    fill_rectangle(0, 0, 800, 550);
+
+    //ground
+    grass();
+    dirt();
+
+    //sun or moon or wateva
+    if (choose_sky == 1)
+    sun_or_moon(600, 70, 30, 360, 1);
+    else
+    sun_or_moon(600, 70, 30, 360, 2);
+
+}
+
+void building(const int x, const int y, const int w, const int h)
+{
+    const int width = x + w;
+    const int height = y + h;
+
+    set_pen_color(color::pink);
+    fill_rectangle(x, y, w, h);
+}
+
+void window(const int x, const int y, const int w, const int h)
+{
+    const int width = x + w;
+    const int height = y + h;
+
+    fill_rectangle(x, y, w, h);
+
+}
+
+void row_of_windows(const int x, const int y, const int w, const int h, const int n, double space_x, const int c)
+{
+    int number_of_windows = 0;
+    int current_x = x;
+
+    if (c == 1)
+    set_pen_color(color::orange);
+    if (c == 2)
+    set_pen_color(color::pink);
+    if (c == 3)
+    set_pen_color(color::purple);
+    if (c == 4)
+    set_pen_color(color::light_red);
+    if (c == 5)
+    set_pen_color(color::indigo);
+    if (c == 6)
+    set_pen_color(color::light_green);
+    if (c == 7)
+    set_pen_color(color::green);
+    if (c == 8)
+    set_pen_color(color::yellow);
+    if (c == 9)
+    set_pen_color(color::violet);
+    if (c == 10)
+    set_pen_color(color::red);
+    if (c == 11)
+    set_pen_color(color::light_grey);
+    if (c == 12)
+    set_pen_color(color::white);
+    if (c == 13)
+    set_pen_color(color::grey);
+    if (c == 14)
+    set_pen_color(color::dark_blue);
+
+    while (number_of_windows < n)
+    {
+
+        current_x = current_x + w + space_x;
+        window(current_x, y, w, h);
+
+        number_of_windows = number_of_windows + 1;
+    }
+}
+
+void block_of_windows(const int x, const int y, const int w, const int h, const int n_floors, const int n_windows, double space_x, double space_y, const int c)
+{
+    int number_of_floors = 0;
+    int sx = space_x;
+    int sy = space_y;
+    int current_y = y;
+
+    if (c == 1)
+    set_pen_color(color::orange);
+    if (c == 2)
+    set_pen_color(color::pink);
+    if (c == 3)
+    set_pen_color(color::purple);
+    if (c == 4)
+    set_pen_color(color::light_red);
+    if (c == 5)
+    set_pen_color(color::indigo);
+    if (c == 6)
+    set_pen_color(color::light_green);
+    if (c == 7)
+    set_pen_color(color::green);
+    if (c == 8)
+    set_pen_color(color::yellow);
+    if (c == 9)
+    set_pen_color(color::violet);
+    if (c == 10)
+    set_pen_color(color::red);
+    if (c == 11)
+    set_pen_color(color::light_grey);
+    if (c == 12)
+    set_pen_color(color::white);
+    if (c == 13)
+    set_pen_color(color::grey);
+    if (c == 14)
+    set_pen_color(color::dark_blue);
+
+    while (number_of_floors < n_floors)
+    {
+        row_of_windows(x, current_y, w, h, n_windows, space_x, c);
+        current_y = current_y + h + space_y;
+
+        number_of_floors = number_of_floors + 1;
+    }
+}
+
+void office_building(const int x, const int ground_y, int w)
+{
+    const int n_floors = random_in_range(4, 10);
+    int window_width = 30;
+    int window_height = 35;
+    int space_x = 8;
+    int space_y = 8;
+    int top_bottom_margin = 10;
+
+    int building_height = n_floors * (window_height + space_y) + top_bottom_margin * 2;
+
+    //STAY ON THE GROUND!!!!
+    int y = 570 - building_height;
+
+    int building_color = random_in_range(1, 14);
+    fill_rectangle(x, y, w, building_height);
+    int window_color = random_in_range(1, 14);
+
+    while (window_color == building_color)
+    {
+        window_color = random_in_range(1, 14);
+    }
+
+    int available_width = w - space_y;
+    int windows_per_floor = available_width / (window_width + space_y);
+
+    int window_start_y = y + top_bottom_margin;
+
+    block_of_windows(x - 27.5, window_start_y, window_width, window_height,n_floors, windows_per_floor, space_x, space_y, window_color);
+}
+
+void fifty_stars(int x, int y)
+{
+    set_pen_color(color::white);
+
+    fill_rectangle(x + 2, y + 5, 1, 1);
+    fill_rectangle(x + 4, y + 5, 1, 1);
+    fill_rectangle(x + 6, y + 5, 1, 1);
+    fill_rectangle(x + 8, y + 5, 1, 1);
+    fill_rectangle(x + 10, y + 5, 1, 1);
+    fill_rectangle(x + 12, y + 5, 1, 1);
+
+    fill_rectangle(x + 3, y + 6, 1, 1);
+    fill_rectangle(x + 5, y + 6, 1, 1);
+    fill_rectangle(x + 7, y + 6, 1, 1);
+    fill_rectangle(x + 9, y + 6, 1, 1);
+    fill_rectangle(x + 11, y + 6, 1, 1);
+
+    fill_rectangle(x + 2, y + 7, 1, 1);
+    fill_rectangle(x + 4, y + 7, 1, 1);
+    fill_rectangle(x + 6, y + 7, 1, 1);
+    fill_rectangle(x + 8, y + 7, 1, 1);
+    fill_rectangle(x + 10, y + 7, 1, 1);
+    fill_rectangle(x + 12, y + 7, 1, 1);
+
+    fill_rectangle(x + 3, y + 8, 1, 1);
+    fill_rectangle(x + 5, y + 8, 1, 1);
+    fill_rectangle(x + 7, y + 8, 1, 1);
+    fill_rectangle(x + 9, y + 8, 1, 1);
+    fill_rectangle(x + 11, y + 8, 1, 1);
+
+    fill_rectangle(x + 2, y + 9, 1, 1);
+    fill_rectangle(x + 4, y + 9, 1, 1);
+    fill_rectangle(x + 6, y + 9, 1, 1);
+    fill_rectangle(x + 8, y + 9, 1, 1);
+    fill_rectangle(x + 10, y + 9, 1, 1);
+    fill_rectangle(x + 12, y + 9, 1, 1);
+}
+
+void mini_american_flag(int x, int y)
+{
+    set_pen_color(color::white);
+    fill_rectangle(x, y, 25, 13);
+    set_pen_color(color::red);
+    fill_rectangle(x, y, 25, 2);
+    fill_rectangle(x, y + 4, 25, 2);
+    fill_rectangle(x, y + 8, 25, 2);
+    fill_rectangle(x, y + 13, 25, 2);
+
+    set_pen_color(color::blue);
+    fill_rectangle(x, y, 10, 5);
+
+    fifty_stars(x-2, y-5);
+
+}
+
+void varietys(const int x, const int y, const int w)
+{
+    int choice = random_in_range(1, 2);
+
+    if (choice == 1) //chimney
+    {
+        set_pen_color(color::dark_grey);
+        fill_rectangle(x + w - 30, y - 50, 10, 40);
+    }
+
+    else if (choice == 2) //flag
+    {
+        set_pen_color(color::dark_grey);
+        fill_rectangle(x + w/2 + 40, y - 60, 3, 60);
+        move_to(x + w/2 + 40, y - 60);
+        mini_american_flag(x + w/2 + 40, y - 60);
+
+    }
+
+}
+
+void house(const int x, const int ground_y, int w)
+{
+    const int n_floors = random_in_range(1, 2);
+
+    int window_width = 30;
+    int window_height = 35;
+    int space_x = 30;
+    int space_y = 8;
+    int top_bottom_margin = 10;
+
+    int house_height = n_floors * (window_height + space_y) + top_bottom_margin * 2;
+    int y = ground_y - house_height;
+
+    int house_color = random_in_range(1, 8);
+    fill_rectangle(x, y, w, house_height);
+    varietys(x,y,w);
+
+    start_shape();
+    move_to(x, y);
+    note_position();
+    move_to(x + w / 2, y - 40);
+    note_position();
+    move_to(x + w, y);
+    note_position();
+    set_pen_color(color::brown);
+    fill_shape();
+
+    int available_width = w - space_y;
+    int windows_per_floor = available_width / (window_width + space_y);
+    int window_color = random_in_range(1, 14);
+
+    while (window_color == house_color)
+    {
+        window_color = random_in_range(1, 14);
+    }
+
+    int window_start_y = y + top_bottom_margin;
+    block_of_windows(x-55, window_start_y, window_width, window_height, n_floors, windows_per_floor, space_x, space_y, window_color);
+
+    int door_color = random_in_range(1,14);
+    int door_x = x + 35;
+    int door_y = (ground_y - window_height - 5);
+    fill_rectangle(door_x, door_y, window_width, window_height + 10);
+
+}
+
+void circle(double x, double y, double radius, const int steps)
+{
+    double pi = acos(-1.0);
+    double circumference = 2 * pi * radius;
+    double step_length = circumference / steps;
+    double turn_angle = 360 / steps;
+
+    start_shape();
+    move_to(x + radius, y);
+    set_heading_degrees(90);
+    circle_steps(step_length, turn_angle, steps);
+    note_position();
+
+    int color = random_in_range(1,3);
+    if (color == 1)
+    set_pen_color(color::light_green);
+    if (color == 2)
+    set_pen_color(color::green);
+    else set_pen_color(color::dark_green);
+
+    fill_shape();
+}
+
+void trees(int x, int ground_y)
+{
+    int height = random_in_range(50, 150);
+    int width = random_in_range(12, 18);
+
+    set_pen_color(color::brown);
+    fill_rectangle(x, ground_y - height, width, height);
+
+    int leaves = random_in_range(100,600);
+
+    int i = 0;
+    while (i < leaves)
+    {
+        circle(x + width/2 + random_in_range(-30, 30), ground_y - height - random_in_range(0, 70), 3, 360);
+        i = i + 1;
+    }
+}
+
+void city_scene()
+{
+    int x = 20;
+
+    while (x < 800)
+    {
+        int ground_y = 240;
+        int width = random_in_range(120, 180);
+        office_building(x, ground_y, width);
+        x = x + width + 15;
+    }
+
+    x = 20;
+
+    while (x < 800)
+    {
+        int ground_y = 570;
+        int width = 100;
+        house(x, ground_y, width);
+        x = x + width + 70;
+    }
+
+    x = 100;
+
+    while (x < 800)
+    {
+        trees(x, 570);
+        x = x + random_in_range(120, 200);
+    }
+}
+
+void main()
+{
+    background();
+    city_scene();
+}
+
+// 6. Make it look nice
+
+#include "library.h"
+
+void circle_steps(double step_length, double turn_angle, int steps_left)
+{
+    if (steps_left == 0)
+    {
+        return;
+    }
+    note_position();
+    draw_distance(step_length);
+    turn_right_by_degrees(turn_angle);
+    circle_steps(step_length, turn_angle, steps_left - 1);
+}
+
+void sun_or_moon(double x, double y, double radius, const int steps, int choose_sky)
+{
+    double pi = acos(-1.0);
+    double circumference = 2 * pi * radius;
+    double step_length = circumference / steps;
+    double turn_angle = 360 / steps;
+
+    start_shape();
+
+    move_to(x + radius, y);
+    set_heading_degrees(90);
+    circle_steps(step_length, turn_angle, steps);
+    note_position();
+
+    if (choose_sky == 1)
+    set_pen_color(color::yellow);
+    else
+    set_pen_color(color::light_grey);
+
+    fill_shape();
+}
+
+void grass()
+{
+    set_pen_color(color::light_green);
+    fill_rectangle(0, 550, 800, 570);
+}
+
+void dirt()
+{
+    set_pen_color(color::brown);
+    fill_rectangle(0, 570, 800, 600);
+}
+
+void background()
+{
+    make_window(800, 600);
+
+    int choose_sky = random_in_range(1, 2);
+
+    if (choose_sky == 1)
+    set_pen_color(color::light_blue);
+    else
+    set_pen_color(color::dark_blue);
+
+    fill_rectangle(0, 0, 800, 550);
+
+    grass();
+    dirt();
+
+    if (choose_sky == 1)
+    sun_or_moon(600, 70, 30, 360, 1);
+    else
+    sun_or_moon(600, 70, 30, 360, 2);
+}
+
+void plant_bush(double x, double y, double radius, const int steps)
+{
+    double pi = acos(-1.0);
+    double circumference = 2 * pi * radius;
+    double step_length = circumference / steps;
+    double turn_angle = 360 / steps;
+
+    start_shape();
+
+    move_to(x + radius, y);
+    set_heading_degrees(90);
+    circle_steps(step_length, turn_angle, steps);
+    note_position();
+
+    fill_shape();
+}
+
+void random_color(int c)
+{
+    if (c == 1)
+    set_pen_color(color::orange);
+    if (c == 2)
+    set_pen_color(color::pink);
+    if (c == 3)
+    set_pen_color(color::purple);
+    if (c == 4)
+    set_pen_color(color::light_red);
+    if (c == 5)
+    set_pen_color(color::indigo);
+    if (c == 6)
+    set_pen_color(color::light_green);
+    if (c == 7)
+    set_pen_color(color::green);
+    if (c == 8)
+    set_pen_color(color::yellow);
+    if (c == 9)
+    set_pen_color(color::violet);
+    if (c == 10)
+    set_pen_color(color::red);
+    if (c == 11)
+    set_pen_color(color::light_grey);
+    if (c == 12)
+    set_pen_color(color::white);
+    if (c == 13)
+    set_pen_color(color::grey);
+    if (c == 14)
+    set_pen_color(color::dark_blue);
+}
+
+void window_decorations(int x, int y, int w, int h)
+{
+    int choice = random_in_range(1, 3);
+
+    if (choice == 1) //curtains
+    {
+        set_pen_color(color::light_red);
+        fill_rectangle(x + 3, y + 3, w / 2 - 4, h - 6);
+        fill_rectangle(x + w / 2 + 1, y + 3, w / 2 - 4, h - 6);
+    }
+    else if (choice == 2) //cat
+    {
+        int cat_color = random_in_range(11,14);
+        set_pen_color(cat_color);
+        fill_rectangle(x + w / 2 - 2, y + h - 8, 5, 5);
+        fill_rectangle(x + w / 2 - 1, y + h - 12, 3, 3);
+        fill_rectangle(x + w / 2 - 2, y + h - 13, 1, 1);
+        fill_rectangle(x + w / 2 + 2, y + h - 13, 1, 1);
+    }
+    else if (choice == 3) //house plant
+    {
+        set_pen_color(color::dark_green);
+        fill_rectangle(x + w / 2 - 1, y + h - 8, 3, 6);
+        set_pen_color(color::green);
+        plant_bush(x + w / 2 - 3, y + h - 15, 3, 360);
+    }
+}
+
+void window(const int x, const int y, const int w, const int h)
+{
+    fill_rectangle(x, y, w, h);
+    window_decorations(x, y, w, h);
+}
+
+void row_of_windows(const int x, const int y, const int w, const int h, const int n, double space_x)
+{
+    int number_of_windows = 0;
+    int current_x = x;
+
+    while (number_of_windows < n)
+    {
+        current_x = current_x + w + space_x;
+        window(current_x, y, w, h);
+        number_of_windows = number_of_windows + 1;
+    }
+}
+
+void block_of_windows(const int x, const int y, const int w, const int h, const int n_floors, const int n_windows, double space_x, double space_y, const int c)
+{
+    int number_of_floors = 0;
+    int current_y = y;
+
+    random_color(c);
+
+    while (number_of_floors < n_floors)
+    {
+        row_of_windows(x, current_y, w, h, n_windows, space_x);
+        current_y = current_y + h + space_y;
+        number_of_floors = number_of_floors + 1;
+    }
+}
+
+void office_building(const int x, const int ground_y, int w)
+{
+    const int n_floors = random_in_range(4, 10);
+    int window_width = 30;
+    int window_height = 35;
+    int space_x = 8;
+    int space_y = 8;
+    int top_bottom_margin = 10;
+
+    int building_height = n_floors * (window_height + space_y) + top_bottom_margin * 2;
+    int y = 570 - building_height;
+
+    int building_color = random_in_range(1, 10);
+    random_color(building_color);
+    fill_rectangle(x, y, w, building_height);
+
+    int window_color = random_in_range(1, 14);
+    while (window_color == building_color)
+    {
+        window_color = random_in_range(1, 14);
+    }
+
+    int available_width = w - space_y;
+    int windows_per_floor = available_width / (window_width + space_y);
+
+    int window_start_y = y + top_bottom_margin;
+    block_of_windows(x - 27.5, window_start_y, window_width, window_height, n_floors, windows_per_floor, space_x, space_y, window_color);
+}
+
+void fifty_stars(int x, int y)
+{
+    set_pen_color(color::white);
+
+    fill_rectangle(x + 2, y + 5, 1, 1);
+    fill_rectangle(x + 4, y + 5, 1, 1);
+    fill_rectangle(x + 6, y + 5, 1, 1);
+    fill_rectangle(x + 8, y + 5, 1, 1);
+    fill_rectangle(x + 10, y + 5, 1, 1);
+    fill_rectangle(x + 12, y + 5, 1, 1);
+
+    fill_rectangle(x + 3, y + 6, 1, 1);
+    fill_rectangle(x + 5, y + 6, 1, 1);
+    fill_rectangle(x + 7, y + 6, 1, 1);
+    fill_rectangle(x + 9, y + 6, 1, 1);
+    fill_rectangle(x + 11, y + 6, 1, 1);
+
+    fill_rectangle(x + 2, y + 7, 1, 1);
+    fill_rectangle(x + 4, y + 7, 1, 1);
+    fill_rectangle(x + 6, y + 7, 1, 1);
+    fill_rectangle(x + 8, y + 7, 1, 1);
+    fill_rectangle(x + 10, y + 7, 1, 1);
+    fill_rectangle(x + 12, y + 7, 1, 1);
+
+    fill_rectangle(x + 3, y + 8, 1, 1);
+    fill_rectangle(x + 5, y + 8, 1, 1);
+    fill_rectangle(x + 7, y + 8, 1, 1);
+    fill_rectangle(x + 9, y + 8, 1, 1);
+    fill_rectangle(x + 11, y + 8, 1, 1);
+
+    fill_rectangle(x + 2, y + 9, 1, 1);
+    fill_rectangle(x + 4, y + 9, 1, 1);
+    fill_rectangle(x + 6, y + 9, 1, 1);
+    fill_rectangle(x + 8, y + 9, 1, 1);
+    fill_rectangle(x + 10, y + 9, 1, 1);
+    fill_rectangle(x + 12, y + 9, 1, 1);
+}
+
+void mini_american_flag(int x, int y)
+{
+    set_pen_color(color::white);
+    fill_rectangle(x, y, 25, 13);
+    set_pen_color(color::red);
+    fill_rectangle(x, y, 25, 2);
+    fill_rectangle(x, y + 4, 25, 2);
+    fill_rectangle(x, y + 8, 25, 2);
+
+    set_pen_color(color::blue);
+    fill_rectangle(x, y, 10, 5);
+    fifty_stars(x - 2, y - 5);
+}
+
+void varietys(const int x, const int y, const int w)
+{
+    int choice = random_in_range(1, 2);
+
+    if (choice == 1) // chimney
+    {
+        set_pen_color(color::dark_grey);
+        fill_rectangle(x + w - 30, y - 50, 10, 40);
+    }
+
+    else if (choice == 2) // flag
+    {
+        set_pen_color(color::dark_grey);
+        fill_rectangle(x + w / 2 + 40, y - 60, 3, 60);
+        mini_american_flag(x + w / 2 + 40, y - 60);
+    }
+
+}
+
+void house(const int x, const int ground_y, int w)
+{
+    const int n_floors = random_in_range(1, 2);
+    int window_width = 30;
+    int window_height = 35;
+    int space_x = 30;
+    int space_y = 8;
+    int top_bottom_margin = 10;
+
+    int house_height = n_floors * (window_height + space_y) + top_bottom_margin * 2;
+    int y = ground_y - house_height;
+
+    int house_color = random_in_range(6, 10);
+    random_color(house_color);
+    fill_rectangle(x, y, w, house_height);
+    varietys(x, y, w);
+
+    // roof
+    start_shape();
+    move_to(x, y);
+    note_position();
+    move_to(x + w/2, y - 40);
+    note_position();
+    move_to(x + w, y);
+    note_position();
+    set_pen_color(color::brown);
+    fill_shape();
+
+    int available_width = w - space_y;
+    int windows_per_floor = available_width / (window_width + space_y);
+    int window_color = random_in_range(1, 14);
+
+    while (window_color == house_color)
+    {
+        window_color = random_in_range(1, 14);
+    }
+
+    int window_start_y = y + top_bottom_margin;
+    block_of_windows(x - 55, window_start_y, window_width, window_height, n_floors, windows_per_floor, space_x, space_y, window_color);
+
+    int door_color = random_in_range(1, 14);
+    random_color(door_color);
+    int door_x = x + 35;
+    int door_y = ground_y - window_height - 5;
+    fill_rectangle(door_x, door_y, window_width, window_height + 10);
+}
+
+void circle_leaves(double x, double y, double radius, const int steps)
+{
+    double pi = acos(-1.0);
+    double circumference = 2 * pi * radius;
+    double step_length = circumference / steps;
+    double turn_angle = 360 / steps;
+
+    start_shape();
+
+    move_to(x + radius, y);
+    set_heading_degrees(90);
+    circle_steps(step_length, turn_angle, steps);
+    note_position();
+
+    int color = random_in_range(1,3);
+    if (color == 1)
+    set_pen_color(color::light_green);
+    if (color == 2)
+    set_pen_color(color::green);
+    else set_pen_color(color::dark_green);
+
+    fill_shape();
+}
+
+void trees(int x, int ground_y)
+{
+    int height = random_in_range(50, 150);
+    int width = random_in_range(12, 18);
+
+    set_pen_color(color::brown);
+    fill_rectangle(x, ground_y - height, width, height);
+
+    int leaves = random_in_range(100, 300);
+    int i = 0;
+    while (i < leaves)
+    {
+        set_pen_color(color::green);
+        circle_leaves(x + width / 2 + random_in_range(-30, 30), ground_y - height - random_in_range(0, 70), 3, 360);
+        i = i + 1;
+    }
+}
+
+void circle_cloud(double x, double y, double radius, const int steps)
+{
+    double pi = acos(-1.0);
+    double circumference = 2 * pi * radius;
+    double step_length = circumference / steps;
+    double turn_angle = 360 / steps;
+
+    start_shape();
+
+    move_to(x + radius, y);
+    set_heading_degrees(90);
+    circle_steps(step_length, turn_angle, steps);
+    note_position();
+
+    set_pen_color(color::white);
+
+    fill_shape();
+}
+
+void cloud(int x, int y)
+{
+    set_pen_color(color::white);
+    circle_cloud(x, y, 15, 360);
+    circle_cloud(x + 20, y, 20, 360);
+    circle_cloud(x + 40, y, 15, 360);
+}
+
+void clouds()
+{
+    int i = 0;
+
+    while (i < 6)
+    {
+        int cloud_x = random_in_range(50, 750);
+        int cloud_y = random_in_range(40, 200);
+        cloud(cloud_x, cloud_y);
+        i = i + 1;
+    }
+}
+
+void city_scene()
+{
+    int x = 20;
+    while (x < 800)
+    {
+        int ground_y = 240;
+        int width = random_in_range(120, 180);
+        office_building(x, ground_y, width);
+        x = x + width + 15;
+    }
+
+    x = 20;
+    while (x < 800)
+    {
+        int ground_y = 570;
+        int width = 100;
+        house(x, ground_y, width);
+        x = x + width + 70;
+    }
+
+    x = 100;
+    while (x < 800)
+    {
+        trees(x, 570);
+        x = x + random_in_range(120, 200);
+    }
+
+    clouds();
+
+}
+
+void main()
+{
+    background();
+    city_scene();
+}
