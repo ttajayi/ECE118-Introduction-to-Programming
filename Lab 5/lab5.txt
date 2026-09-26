@@ -1,0 +1,682 @@
+﻿// 1. What time is it?
+
+
+#include "library.h"
+
+
+void what_time_is_it()
+{
+        int time = get_clock_time();
+        int date = get_calendar_date();
+        int year = date / 10000;
+        int month = (date / 100) % 100;
+        int day = date % 100;
+        int hour = time / 10000;
+        int pm = hour >= 12;
+        int minute = (time / 100) % 100;
+
+
+        cout << "Year: " << year << endl; 
+        cout << "Month: " << month << endl; 
+        cout << "Day: " << day << endl; 
+        cout << "Hour: " << hour << endl; 
+        cout << "Minute: " << minute << endl; 
+}
+
+
+void main()
+{
+        what_time_is_it();
+}
+
+
+
+
+
+
+
+
+// 2. The Monroe Doctrine
+
+
+#include "library.h"
+
+
+void what_time_is_it()
+{
+        int time = get_clock_time();
+        int date = get_calendar_date();
+        int year = date / 10000;
+        int month = (date / 100) % 100;
+        int day = date % 100;
+        int hour = time / 10000;
+        int pm = hour >= 12;
+                if (hour > 12)
+                        (hour = hour - 12);
+                { 
+                        if (hour >= 12) pm = true;
+                }
+        int minute = (time / 100) % 100;
+        
+        cout << "Date: " << year << "-" << month << "-" << day << endl; 
+        cout << "Time: " << hour << ":" << (minute < 10 ? "0" : "") << minute << (pm ? " p.m." : " a.m.") << endl;
+                
+}
+
+
+void main()
+{
+        what_time_is_it();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 3. A Clock Face
+
+
+#include "library.h"
+
+
+void circle(double x, double y, double radius, const int steps)
+{
+        double pi = acos(-1.0);
+        double circumference = 2 *pi *radius;
+        double step_length = circumference/steps;
+        double turn_angle = 360/steps;
+
+
+        move_to(x + radius, y);
+        set_heading_degrees(90);
+        
+
+
+        for (int i = 0; i < steps; i++) 
+        {
+                draw_distance(step_length);
+                turn_right_by_degrees(turn_angle);
+    }
+
+
+        
+}
+
+
+void clock_marks(int x, int y)
+{
+        
+        double radius = 200; 
+        double steps = 360; 
+
+
+        for (int i = 0; i < 12; i++) 
+        {
+                move_to(x,y);
+        move_distance(radius - 15);
+        draw_distance(15);
+        move_distance(-(radius - 15));
+        turn_right_by_degrees(30);
+        }
+}
+
+
+
+
+void clock()
+{
+        circle(60,120,200,360);
+        clock_marks(260,320);
+}
+
+
+void main()
+{
+        make_window(500,650);
+        clock();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 4. A Whole Clock
+
+
+#include "library.h"
+
+
+void what_time_is_it()
+{
+        int time = get_clock_time();
+        int date = get_calendar_date();
+        int year = date / 10000;
+        int month = (date / 100) % 100;
+        int day = date % 100;
+        int hour = time / 10000;
+        int pm = hour >= 12;
+                if (hour > 12)
+                        (hour = hour - 12);
+                { 
+                        if (hour >= 12) pm = true;
+                }
+        int minute = (time / 100) % 100;
+
+
+        
+        cout << "Date: " << year << "-" << month << "-" << day << endl; 
+        cout << "Time: " << hour << ":" << (minute < 10 ? "0" : "") << minute << (pm ? " p.m." : " a.m.") << endl;
+                
+}
+
+
+
+
+void circle(double x, double y, double radius, const int steps)
+{
+        double pi = acos(-1.0);
+        double circumference = 2 *pi *radius;
+        double step_length = circumference/steps;
+        double turn_angle = 360/steps;
+
+
+        move_to(x + radius, y);
+        set_heading_degrees(90);
+        
+
+
+        for (int i = 0; i < steps; i++) 
+        {
+                draw_distance(step_length);
+                turn_right_by_degrees(turn_angle);
+    }
+
+
+        
+}
+
+
+void clock_marks(int x, int y)
+{
+        double radius = 200; 
+        double steps = 360; 
+
+
+        for (int i = 0; i < 12; i++) 
+        {
+                move_to(x,y);
+        move_distance(radius - 15);
+        draw_distance(15);
+        move_distance(-(radius - 15));
+        turn_right_by_degrees(30);
+        }
+}
+
+
+void clock_hands(double x, double y, double radius, int hour, int minute)
+{
+        double hour_angle = (hour % 12) * 30 + (minute * 0.5);
+    double minute_angle = minute * 6;
+
+
+
+
+        // hour hand
+    move_to(x, y);
+    set_heading_degrees(hour_angle);
+        set_pen_width(2);
+    draw_distance(radius * 0.5);
+
+
+    // minute hand
+    move_to(x, y);
+    set_heading_degrees(minute_angle);
+        set_pen_width(2);
+    draw_distance(radius * 0.75);
+
+
+        
+}
+
+
+
+
+void clock()
+{
+        int time = get_clock_time();
+        int hour = time / 10000;
+        int minute = (time / 100) % 100;
+
+
+        circle(60,120,200,360);
+        clock_marks(260,320);
+        clock_hands(270,315,200,hour,minute);
+}
+
+
+
+
+
+
+void main()
+{
+        make_window(500,650);
+        clock();
+        what_time_is_it();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 5. Add a Second Hand and Animate Your Clock
+
+
+#include "library.h" 
+
+
+int time = get_clock_time();
+int date = get_calendar_date();
+int year = date / 10000;
+int month = (date / 100) % 100;
+int day = date % 100;
+int hour = time / 10000;
+int minute = (time / 100) % 100;
+
+
+void what_time_is_it()
+{
+        int pm = hour >= 12;
+                if (hour > 12)
+                        (hour = hour - 12);
+                { 
+                        if (hour >= 12) pm = true;
+                }
+        int seconds = time % 100;
+
+
+        cout << "Date: " << year << "-" << month << "-" << day << endl; 
+        cout << "Time: " << hour << ":" << (minute < 10 ? "0" : "") << minute << (pm ? " p.m." : " a.m.") << endl;                
+}
+
+
+
+
+void circle(double x, double y, double radius, const int steps)
+{
+        double pi = acos(-1.0);
+        double circumference = 2 *pi *radius;
+        double step_length = circumference/steps;
+        double turn_angle = 360/steps;
+
+
+        move_to(x + radius, y);
+        set_heading_degrees(90);
+        
+        for (int i = 0; i < steps; i++) 
+        {
+                draw_distance(step_length);
+                turn_right_by_degrees(turn_angle);
+    }
+        
+}
+
+
+void clock_marks(int x, int y)
+{
+        double radius = 200; 
+        double steps = 360; 
+
+
+        for (int i = 0; i < 12; i++) 
+        {
+                move_to(x,y);
+        move_distance(radius - 15);
+        draw_distance(15);
+        move_distance(-(radius - 15));
+        turn_right_by_degrees(30);
+        }
+}
+
+
+void clock_hands(double x, double y, double radius, int hour, int minute, int seconds)
+{
+        double hour_angle = (hour % 12) * 30 + (minute * 0.5);
+    double minute_angle = minute * 6;
+        double seconds_angle = seconds * 6;
+
+
+
+
+        // hour hand
+    move_to(x, y);
+    set_heading_degrees(hour_angle);
+        set_pen_width(5);
+    draw_distance(radius * 0.5);
+
+
+    // minute hand
+    move_to(x, y);
+    set_heading_degrees(minute_angle);
+        set_pen_width(5);
+    draw_distance(radius * 0.75);
+
+
+        // seconds hand 
+        move_to(x,y);
+        set_heading_degrees(seconds_angle);
+        set_pen_width(0.5);
+        draw_distance(radius * 0.75);        
+}
+
+
+
+
+void clock_face()
+{
+        circle(60,120,200,360);
+        clock_marks(260,320);
+}
+
+
+void full_clock()
+{
+        int time = get_clock_time();
+    int hour = time / 10000;
+    int minute = (time / 100) % 100;
+    int seconds = time % 100;
+
+
+        clock_face();
+        clock_hands(270,315,200,hour,minute,seconds);
+}
+
+
+
+
+
+
+void main()
+{
+        make_window(500,650);
+
+
+        while (true) 
+        {
+        wait(0.1);
+                clear();
+                full_clock();
+                what_time_is_it();
+        }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 6. A Complete Product
+
+
+#include "library.h" 
+
+
+int time = get_clock_time();
+int date = get_calendar_date();
+int year = date / 10000;
+int month = (date / 100) % 100;
+int day = date % 100;
+int hour = time / 10000;
+int minute = (time / 100) % 100;
+
+
+void what_time_is_it()
+{
+        int time = get_clock_time();
+        int date = get_calendar_date();
+        int year = date / 10000;
+        int month = (date / 100) % 100;
+        int day = date % 100;
+        int hour = time / 10000;
+        int pm = hour >= 12;
+                if (hour > 12)
+                        (hour = hour - 12);
+                { 
+                        if (hour >= 12) pm = true;
+                }
+        int minute = (time / 100) % 100;
+        
+        cout << "Date: " << year << "-" << month << "-" << day << endl; 
+        cout << "Time: " << hour << ":" << (minute < 10 ? "0" : "") << minute << (pm ? " p.m." : " a.m.") << endl;
+}
+
+
+
+
+void circle(double x, double y, double radius, const int steps)
+{
+        double pi = acos(-1.0);
+        double circumference = 2 *pi *radius;
+        double step_length = circumference/steps;
+        double turn_angle = 360/steps;
+
+
+        move_to(x + radius, y);
+        set_heading_degrees(90);
+        
+        for (int i = 0; i < steps; i++) 
+        {
+                draw_distance(step_length);
+                turn_right_by_degrees(turn_angle);
+    }
+        
+}
+
+
+void clock_marks(int x, int y)
+{
+        double radius = 200; 
+        double steps = 360; 
+
+
+        for (int i = 0; i < 12; i++) 
+        {
+                move_to(x,y);
+        move_distance(radius - 15);
+        draw_distance(15);
+        move_distance(-(radius - 15));
+        turn_right_by_degrees(30);
+        }
+}
+
+
+void clock_hands(double x, double y, double radius, int hour, int minute, int seconds)
+{
+        double hour_angle = (hour % 12) * 30 + (minute * 0.5);
+    double minute_angle = minute * 6;
+        double seconds_angle = seconds * 6;
+
+
+
+
+        // hour hand
+    move_to(x, y);
+    set_heading_degrees(hour_angle);
+        set_pen_width(5);
+    draw_distance(radius * 0.5);
+
+
+    // minute hand
+    move_to(x, y);
+    set_heading_degrees(minute_angle);
+        set_pen_width(5);
+    draw_distance(radius * 0.75);
+
+
+        // seconds hand 
+        move_to(x,y);
+        set_heading_degrees(seconds_angle);
+        set_pen_width(0.5);
+        draw_distance(radius * 0.75);        
+}
+
+
+
+
+void clock_face()
+{
+        circle(60,120,200,360);
+        clock_marks(260,320);
+}
+
+
+void full_clock()
+{
+        int time = get_clock_time();
+    int hour = time / 10000;
+    int minute = (time / 100) % 100;
+    int seconds = time % 100;
+
+
+        clock_face();
+        clock_hands(270,315,200,hour,minute,seconds);
+}
+
+
+string month_name(int month)
+{
+        if (month == 1) return "January"; 
+        if (month == 2) return "February";
+        if (month == 3) return "March"; 
+        if (month == 4) return "April"; 
+        if (month == 5) return "May"; 
+        if (month == 6) return "June"; 
+        if (month == 7) return "July"; 
+        if (month == 8) return "August";
+        if (month == 9) return "September";
+        if (month == 10) return "October"; 
+        if (month == 11) return "November"; 
+        if (month == 12) return "December";
+}
+
+
+
+
+string day_suffix(int day)
+{
+    if (day % 10 == 1 && day != 11) return "st";
+    if (day % 10 == 2 && day != 12) return "nd";
+    if (day % 10 == 3 && day != 13) return "rd";
+    return "th";
+}
+
+
+void display_date_and_time(int text_size)
+{
+        int time = get_clock_time();
+        int date = get_calendar_date();
+        int year = date / 10000;
+        int month = (date / 100) % 100;
+        int day = date % 100;
+        int hour = time / 10000;
+        int minute = (time / 100) % 100;
+        int pm = hour >= 12;
+                if (hour > 12)
+                        (hour = hour - 12);
+                { 
+                        if (hour >= 12) pm = true;
+                }
+
+
+        set_font_size(text_size);
+        move_to(20,60);
+        write_string(day); write_string(day_suffix(day)); write_string(" "); write_string(month_name(month)); write_string(" "); write_string(year);
+        move_to(20,590);
+        write_string(hour); write_string(":"); write_string(minute); 
+        write_string(pm? " p.m.":" a.m.");
+}
+
+
+void main()
+{
+        make_window(500,650);
+
+
+        while (true) 
+        {
+        wait(0.1);
+                clear();
+                full_clock();
+                what_time_is_it();
+                display_date_and_time(40);
+        }
+
+
+}
