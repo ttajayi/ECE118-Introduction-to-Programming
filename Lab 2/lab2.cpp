@@ -1,0 +1,445 @@
+﻿// 1. A five pointed star
+
+#include "library.h"
+
+void main()
+{
+    make_window(400,400);
+    set_pen_width(3);
+    move_to(200,100);
+    set_heading_degrees(162);
+    draw_distance(80);
+    turn_left_by_degrees(72);
+    draw_distance(80);
+    turn_right_by_degrees(144);
+    draw_distance(80);
+    turn_left_by_degrees(72);
+    draw_distance(80);
+    turn_right_by_degrees(144);
+    draw_distance(80);
+    turn_left_by_degrees(72);
+    draw_distance(80);
+    turn_right_by_degrees(144);
+    draw_distance(80);
+    turn_left_by_degrees(72);
+    draw_distance(80);
+    turn_right_by_degrees(144);
+    draw_distance(80);
+    turn_left_by_degrees(72);
+    draw_distance(80);
+    turn_left_by_degrees(18);
+}
+
+// 2. A function
+
+#include "library.h"
+
+void draw_star(const int x, const int y, const int length)
+{
+    start_shape();
+    set_heading_degrees(162);
+    draw_distance(length);
+    turn_left_by_degrees(72);
+    draw_distance(length);
+    turn_right_by_degrees(144);
+    draw_distance(length);
+    turn_left_by_degrees(72);
+    draw_distance(length);
+    turn_right_by_degrees(144);
+    draw_distance(length);
+    turn_left_by_degrees(72);
+    draw_distance(length);
+    turn_right_by_degrees(144);
+    draw_distance(length);
+    turn_left_by_degrees(72);
+    draw_distance(length);
+    turn_right_by_degrees(144);
+    draw_distance(length);
+    turn_left_by_degrees(72);
+    draw_distance(length);
+    turn_left_by_degrees(18);
+}
+
+void main()
+{
+    make_window(800,400);
+    set_pen_color(color::blue);
+    set_pen_width(3);
+    move_to(200,100);
+    draw_star(200, 100, 80);
+    move_to(200,140);
+    draw_star(200,140,50);
+    move_to(300,200);
+    draw_star(300,200,30);
+    move_to(400,200);
+    draw_star(400,200,20);
+    move_to(500,200);
+    draw_star(500,200,10);
+}
+
+// 3. Coloring
+
+#include "library.h"
+
+void draw_star(const int x, const int y, const int length)
+{
+    start_shape();
+    set_heading_degrees(162);
+    move_distance(length);
+    note_position();
+    turn_left_by_degrees(72);
+    move_distance(length);
+    note_position();
+    turn_right_by_degrees(144);
+    move_distance(length);
+    note_position();
+    turn_left_by_degrees(72);
+    move_distance(length);
+    note_position();
+    turn_right_by_degrees(144);
+    move_distance(length);
+    note_position();
+    turn_left_by_degrees(72);
+    move_distance(length);
+    note_position();
+    turn_right_by_degrees(144);
+    move_distance(length);
+    note_position();
+    turn_left_by_degrees(72);
+    move_distance(length);
+    note_position();
+    turn_right_by_degrees(144);
+    move_distance(length);
+    note_position();
+    turn_left_by_degrees(72);
+    move_distance(length);
+    note_position();
+    turn_left_by_degrees(18);
+    set_pen_color(color::blue);
+    fill_shape();
+}
+
+void main()
+{
+    make_window(800,400);
+    set_pen_color(color::blue);
+    set_pen_width(3);
+    move_to(200,100);
+    draw_star(200, 100, 80);
+    move_to(200,140);
+    draw_star(200,140,50);
+    move_to(300,200);
+    draw_star(300,200,30);
+    move_to(400,200);
+    draw_star(400,200,20);
+    move_to(500,200);
+    draw_star(500,200,10);
+}
+
+// 4. The Lone-Star Program
+
+#include "library.h"
+
+void draw_star(const int x, const int y, const int length)
+{
+    move_to(x,y);
+    start_shape();
+    set_heading_degrees(162);
+    move_distance(length);
+    note_position();
+    turn_left_by_degrees(72);
+    move_distance(length);
+    note_position();
+    turn_right_by_degrees(144);
+    move_distance(length);
+    note_position();
+    turn_left_by_degrees(72);
+    move_distance(length);
+    note_position();
+    turn_right_by_degrees(144);
+    move_distance(length);
+    note_position();
+    turn_left_by_degrees(72);
+    move_distance(length);
+    note_position();
+    turn_right_by_degrees(144);
+    move_distance(length);
+    note_position();
+    turn_left_by_degrees(72);
+    move_distance(length);
+    note_position();
+    turn_right_by_degrees(144);
+    move_distance(length);
+    note_position();
+    turn_left_by_degrees(72);
+    move_distance(length);
+    note_position();
+    turn_left_by_degrees(18);
+    fill_shape();
+}
+
+void main()
+{
+    make_window(800,600);
+    set_pen_color(color::blue);
+    fill_rectangle(0,0,300,600);
+
+    set_pen_width(1);
+    set_pen_color(color::white);
+    draw_star(150,230,50);
+
+    set_pen_color(color::red);
+    fill_rectangle(300,300,800,300);
+
+}
+
+// 5. Row of stars
+
+#include "library.h"
+
+void draw_star(const int x, const int y, const int length)
+{
+    start_shape();
+    set_heading_degrees(162);
+    move_distance(length);
+    note_position();
+    turn_left_by_degrees(72);
+    move_distance(length);
+    note_position();
+    turn_right_by_degrees(144);
+    move_distance(length);
+    note_position();
+    turn_left_by_degrees(72);
+    move_distance(length);
+    note_position();
+    turn_right_by_degrees(144);
+    move_distance(length);
+    note_position();
+    turn_left_by_degrees(72);
+    move_distance(length);
+    note_position();
+    turn_right_by_degrees(144);
+    move_distance(length);
+    note_position();
+    turn_left_by_degrees(72);
+    move_distance(length);
+    note_position();
+    turn_right_by_degrees(144);
+    move_distance(length);
+    note_position();
+    turn_left_by_degrees(72);
+    move_distance(length);
+    note_position();
+    turn_left_by_degrees(18);
+    set_pen_color(color::white);
+    fill_shape();
+}
+
+void row_of_six_stars(const int x, const int y, int scale)
+{
+    set_pen_color(color::white);
+    set_pen_width(1);
+    move_to(25,10);
+    draw_star(25 * scale, 10 * scale, 10);
+    move_to(75,10);
+    draw_star(75 * scale, 10 * scale, 10);
+    move_to(125,10);
+    draw_star(125 * scale, 10 * scale, 10);
+    move_to(175,10);
+    draw_star(175 * scale, 10 * scale, 10);
+    move_to(225,10);
+    draw_star(225 * scale, 10 * scale, 10);
+    move_to(275,10);
+    draw_star(275 * scale, 10 * scale, 10);
+}
+
+void main()
+{
+    make_window(800,450);
+    set_pen_color(color::blue);
+    fill_rectangle(0,0,320,100);
+    row_of_six_stars(50,30,1);
+}
+
+// 6. Block of stars
+
+#include "library.h"
+
+void draw_star(const int x, const int y, const int length)
+{
+    start_shape();
+    set_heading_degrees(162);
+    move_distance(length);
+    note_position();
+    turn_left_by_degrees(72);
+    move_distance(length);
+    note_position();
+    turn_right_by_degrees(144);
+    move_distance(length);
+    note_position();
+    turn_left_by_degrees(72);
+    move_distance(length);
+    note_position();
+    turn_right_by_degrees(144);
+    move_distance(length);
+    note_position();
+    turn_left_by_degrees(72);
+    move_distance(length);
+    note_position();
+    turn_right_by_degrees(144);
+    move_distance(length);
+    note_position();
+    turn_left_by_degrees(72);
+    move_distance(length);
+    note_position();
+    turn_right_by_degrees(144);
+    move_distance(length);
+    note_position();
+    turn_left_by_degrees(72);
+    move_distance(length);
+    note_position();
+    turn_left_by_degrees(18);
+    set_pen_color(color::white);
+    fill_shape();
+}
+
+void row_of_six_stars(const int x, const int y, int scale)
+{
+    move_to(25,10);
+    draw_star(25 * scale, 10 * scale, 10);
+    move_to(75,10);
+    draw_star(75 * scale, 10 * scale, 10);
+    move_to(125,10);
+    draw_star(125 * scale, 10 * scale, 10);
+    move_to(175,10);
+    draw_star(175 * scale, 10 * scale, 10);
+    move_to(225,10);
+    draw_star(225 * scale, 10 * scale, 10);
+    move_to(275,10);
+    draw_star(275 * scale, 10 * scale, 10);
+}
+
+void row_of_five_stars(const int x, const int y, int scale)
+{
+    move_to(50,35);
+    draw_star(50 * scale, 35 * scale, 10);
+    move_to(100,35);
+    draw_star(100 * scale, 35 * scale, 10);
+    move_to(150,35);
+    draw_star(150 * scale, 35 * scale, 10);
+    move_to(200,35);
+    draw_star(200 * scale, 35 * scale, 10);
+    move_to(250,35);
+    draw_star(250 * scale, 35 * scale, 10);
+}
+
+void main()
+{
+    make_window(800,450);
+    set_pen_color(color::blue);
+    fill_rectangle(0,0,320,100);
+    row_of_six_stars(50,30,1);
+    row_of_five_stars(60,35,1);
+}
+
+// 7. The American Flag
+
+#include "library.h"
+
+void draw_star(const int x, const int y, const int length)
+{
+    start_shape();
+    set_heading_degrees(162);
+    move_distance(length);
+    note_position();
+    turn_left_by_degrees(72);
+    move_distance(length);
+    note_position();
+    turn_right_by_degrees(144);
+    move_distance(length);
+    note_position();
+    turn_left_by_degrees(72);
+    move_distance(length);
+    note_position();
+    turn_right_by_degrees(144);
+    move_distance(length);
+    note_position();
+    turn_left_by_degrees(72);
+    move_distance(length);
+    note_position();
+    turn_right_by_degrees(144);
+    move_distance(length);
+    note_position();
+    turn_left_by_degrees(72);
+    move_distance(length);
+    note_position();
+    turn_right_by_degrees(144);
+    move_distance(length);
+    note_position();
+    turn_left_by_degrees(72);
+    move_distance(length);
+    note_position();
+    turn_left_by_degrees(18);
+    set_pen_color(color::white);
+    fill_shape();
+}
+
+void row_of_six_stars(const int y, int scale)
+{
+    move_to(25 * scale, y * scale);
+    draw_star(25 * scale, y * scale, 10 * scale);
+    move_to(75 * scale, y * scale);
+    draw_star(75 * scale, y * scale, 10 * scale);
+    move_to(125 * scale, y * scale);
+    draw_star(125 * scale, y * scale, 10 * scale);
+    move_to(175 * scale, y * scale);
+    draw_star(175 * scale, y * scale, 10 * scale);
+    move_to(225 * scale, y * scale);
+    draw_star(225 * scale, y * scale, 10 * scale);
+    move_to(275 * scale, y * scale);
+    draw_star(275 * scale, y * scale, 10 * scale);
+}
+
+void row_of_five_stars(const int y, int scale)
+{
+    move_to(50 * scale, y * scale);
+    draw_star(50 * scale, y * scale, 10 * scale);
+    move_to(100 * scale, y * scale);
+    draw_star(100 * scale, y * scale, 10 * scale);
+    move_to(150 * scale, y * scale);
+    draw_star(150 * scale, y * scale, 10 * scale);
+    move_to(200 * scale, y * scale);
+    draw_star(200 * scale, y * scale, 10 * scale);
+    move_to(250 * scale, y * scale);
+    draw_star(250 * scale, y * scale, 10 * scale);
+}
+
+void American_flag(int scale)
+{
+    make_window(800 * scale, 450 * scale);
+    set_pen_color(color::blue);
+    fill_rectangle(0, 0, 300 * scale, 220 * scale);
+    row_of_six_stars(20, scale);
+    row_of_five_stars(40, scale);
+    row_of_six_stars(60, scale);
+    row_of_five_stars(80, scale);
+    row_of_six_stars(100, scale);
+    row_of_five_stars(120, scale);
+    row_of_six_stars(140, scale);
+    row_of_five_stars(160, scale);
+    row_of_six_stars(180, scale);
+
+    set_pen_color(color::red);
+    fill_rectangle(300 * scale, 0, 800 * scale, 30 * scale);
+    fill_rectangle(300 * scale, 65 * scale, 800 * scale, 30 * scale);
+    fill_rectangle(300 * scale, 125 * scale, 800 * scale, 30 * scale);
+    fill_rectangle(300 * scale, 190 * scale, 800 * scale, 30 * scale);
+    fill_rectangle(0, 260 * scale, 800 * scale, 30 * scale);
+    fill_rectangle(0, 340 * scale, 800 * scale, 30 * scale);
+    fill_rectangle(0, 420 * scale, 800 * scale, 30 * scale);
+}
+
+void main()
+{
+    American_flag(1);
+}
